@@ -1,0 +1,32 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  Image_Name: 'csharp_image'
+  registry_Name: 'imageregistry4461.azurecr.io'
+
+resources:
+- repo: self
+
+stages:
+  - stage: Build and Push
+    jobs:
+      - job: BuildandPush
+        steps:
+          - task: Docker@0
+            inputs:
+              containerregistrytype: 'Azure Container Registry'
+              azureSubscription: 'Pay-As-You-Go(5083e524-6907-48df-8508-9fa606d81016)'
+              azureContainerRegistry: '{"loginServer":"imageregistry4461.azurecr.io", "id" : "/subscriptions/5083e524-6907-48df-8508-9fa606d81016/resourceGroups/Devops_training/providers/Microsoft.ContainerRegistry/registries/Imageregistry4461"}'
+              action: 'Build an image'
+              dockerFile: '$(Build.SourcesDirectory)/backend_api/backend_api_csharp/Dockerfile'
+              imageName: '$(Image_Name):$(Build.BuildId)'
+              qualifyImageName: false
