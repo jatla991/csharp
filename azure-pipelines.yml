@@ -17,7 +17,7 @@ resources:
 - repo: self
 
 stages:
-  - stage: Build and Push
+  - stage: Build
     jobs:
       - job: BuildandPush
         steps:
