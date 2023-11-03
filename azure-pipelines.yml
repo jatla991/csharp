@@ -45,10 +45,10 @@ stages:
       - task: AzureContainerApps@1
         inputs:
           azureSubscription: 'Pay-As-You-Go(5083e524-6907-48df-8508-9fa606d81016)'
-          acrName: 'akhil4461.azurecr.io'
+          acrName: 'akhil4461'
           acrUsername: 'akhil4461'
           acrPassword: 'mHWfk0CJNgn+QaP7iPk9LAt6BMWw2r/SvErHRwiLsV+ACRBrsl4l'
-          imageToDeploy: '$(Image_Name):$(Build.BuildId)'
+          imageToDeploy: 'akhil4461.azurecr.io/$(Image_Name):$(Build.BuildId)'
           containerAppName: 'backendapp'
           resourceGroup: 'Devops_training'
           containerAppEnvironment: 'managedEnvironment-Devopstraining-a55b'
