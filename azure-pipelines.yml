@@ -30,3 +30,11 @@ stages:
               dockerFile: '$(Build.SourcesDirectory)/backend_api/backend_api_csharp/Dockerfile'
               imageName: '$(Image_Name):$(Build.BuildId)'
               qualifyImageName: false
+          
+          - task: Docker@1
+            inputs:
+              containerregistrytype: 'Azure Container Registry'
+              azureSubscriptionEndpoint: 'Pay-As-You-Go(5083e524-6907-48df-8508-9fa606d81016)'
+              azureContainerRegistry: 'imageregistry4461.azurecr.io'
+              command: 'Push an image'
+              imageName: '$(Image_Name):$(Build.BuildId)'
